@@ -1,4 +1,1 @@
-<---START OF CONTENT --->
-mewow
-
-<---END OF CONTENT --->
+<---START OF CONTENT --->whatever you want to replace it with<---END OF CONTENT --->

@@ -22,6 +22,7 @@ with open(FileName, 'r') as f:
     # Define the second line where your content will be replaced / added 
     ending_text = '<!---END OF CONTENT --->'
     to_replace = regex.match(starting_text + "(.*)" + ending_text, contents)
+    print(to_replace)
     contents = contents.replace(to_replace, Template)
     
 with open(FileName, 'w') as f:

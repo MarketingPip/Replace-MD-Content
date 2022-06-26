@@ -1,3 +1,4 @@
+import re as regex
 
 ## Replace content in-between two lines in your MD file(s).
 

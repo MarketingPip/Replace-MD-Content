@@ -16,15 +16,17 @@ Template = """
 # Define the filename here you want to replace content in
 FileName = "README.md"
 
+
 with open(FileName, 'r') as f:
     contents = f.read()
-    starting_text = '<---START OF CONTENT --->'
-    ending_text = '<---END OF CONTENT --->'
-    to_replace = contents[contents.find(starting_text)+len(starting_text):contents.rfind(ending_text)]
+    # Define the first line where your content will be replaced / added 
+    starting_text = '<!---START OF CONTENT --->'
+    # Define the second line where your content will be replaced / added 
+    ending_text = '<!---END OF CONTENT --->'
+    to_replace = contents[contents.find(starting_text):contents.rfind(ending_text)]
     contents = contents.replace(to_replace, Template)
     
 
-    
 with open(FileName, 'w') as f:
     f.write(contents)   
     

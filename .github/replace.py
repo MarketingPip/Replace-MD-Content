@@ -18,8 +18,7 @@ FileName = "README.md"
 
 with open(FileName, 'r') as f:
     contents = f.read()
-    lines = contents.readlines()
-    for line in lines:
+    for line in contents:
         contents = regex.sub("<!---[ \t]*START OF CONTENT[ \t]*--->(?s).*<!---[ \t]*END OF CONTENT[ \t]*--->", Template, contents)
     # Define the first line where your content will be replaced / added 
  #   starting_text = '<!---START OF CONTENT --->'

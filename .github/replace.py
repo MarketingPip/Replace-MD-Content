@@ -16,21 +16,14 @@ Template = """
 # Define the filename here you want to replace content in
 FileName = "README.md"
 
-pattern = regex.compile(r'<!---[ \t]*START OF CONTENT[ \t]*--->(?s).*<!---[ \t]*END OF CONTENT[ \t]*--->')
-
-
-
 with open(FileName, 'r') as f:
     contents = f.read()
-    for match in regex.findall(pattern, contents):
-        contents = regex.sub("<!---[ \t]*START OF CONTENT[ \t]*--->(?s).*<!---[ \t]*END OF CONTENT[ \t]*--->", Template, contents)
-    # Define the first line where your content will be replaced / added 
- #   starting_text = '<!---START OF CONTENT --->'
-    # Define the second line where your content will be replaced / added 
-  #  ending_text = ''
+    starting_text = '<---START OF CONTENT --->'
+    ending_text = '<---END OF CONTENT --->'
+    to_replace = contents[contents.find(starting_text)+len(starting_text):contents.rfind(ending_text)]
+    contents = contents.replace(to_replace, Template)
     
-   # to_replace = contents[contents.find(starting_text)+len(starting_text):contents.find(ending_text)]
-    #contents = contents.replace(to_replace, Template)
+
     
 with open(FileName, 'w') as f:
     f.write(contents)   

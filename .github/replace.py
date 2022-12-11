@@ -38,7 +38,7 @@ with open(FileName, 'r') as f:
     # Define the second line where your content will be replaced / added 
     ending_text = '<!---END OF CONTENT --->'
     # Replace all matches with your template!
-    contents = replace_between_all_regex(contents, starting_text, ending_text, template)
+    contents = replace_between_all_regex(contents, starting_text, ending_text, Template)
 
     
 

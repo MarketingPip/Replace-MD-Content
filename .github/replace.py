@@ -20,12 +20,7 @@ FileName = "README.md"
 def replace_between(file_name, start_string, end_string, new_string):
     with open(file_name, 'r') as f:
         content = f.read()
-    start_index = content.find(start_string)
-    end_index = content.find(end_string)
-    while start_index != -1 and end_index != -1:
-        content = content[:start_index] + new_string + content[end_index:]
-        start_index = content.find(start_string)
-        end_index = content.find(end_string)
+    content = re.sub(r'{}.*?{}'.format(start_string, end_string), new_string, content, flags=re.DOTALL)
     with open(file_name, 'w') as f:
         f.write(content)
 

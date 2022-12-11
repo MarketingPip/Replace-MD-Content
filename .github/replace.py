@@ -23,9 +23,24 @@ with open(FileName, 'r') as f:
     starting_text = '<!---START OF CONTENT --->'
     # Define the second line where your content will be replaced / added 
     ending_text = '<!---END OF CONTENT --->'
-    to_replace = contents[contents.find(starting_text)+len(starting_text):contents.rfind(ending_text)]
-    contents = contents.replace(to_replace, Template)
+    # Replace all matches with your template!
+    contents = replace_between_all_regex(contents, starting_text, ending_text, template)
+
     
+def replace_between_all_regex(text, start, end, replacement):
+    """
+    Replace content between two strings
+    :param text: Text to be processed
+    :param start: Start string
+    :param end: End string
+    :param replacement: Replacement string
+    :return: Processed text
+    """
+    # Compile regex
+    regex = re.compile(start + "(.*?)" + end)
+
+    # Replace text between start and end indexes
+    return regex.sub(replacement, text)    
 
 with open(FileName, 'w') as f:
     f.write(contents)   

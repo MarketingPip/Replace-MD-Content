@@ -39,10 +39,10 @@ with open(FileName, 'r') as f:
     ending_text = '<!---END OF CONTENT --->'
     # Replace all matches with your template!
     contents = replace_between_all_regex(contents, starting_text, ending_text, Template)
-
+    with open(FileName, 'w') as f:
+        f.write(contents)   
     
 
 
-with open(FileName, 'w') as f:
-    f.write(contents)   
+
     

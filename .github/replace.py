@@ -16,17 +16,6 @@ Template = """
 # Define the filename here you want to replace content in
 FileName = "README.md"
 
-
-with open(FileName, 'r') as f:
-    contents = f.read()
-    # Define the first line where your content will be replaced / added 
-    starting_text = '<!---START OF CONTENT --->'
-    # Define the second line where your content will be replaced / added 
-    ending_text = '<!---END OF CONTENT --->'
-    # Replace all matches with your template!
-    contents = replace_between_all_regex(contents, starting_text, ending_text, template)
-
-    
 def replace_between_all_regex(text, start, end, replacement):
     """
     Replace content between two strings
@@ -41,6 +30,18 @@ def replace_between_all_regex(text, start, end, replacement):
 
     # Replace text between start and end indexes
     return regex.sub(replacement, text)    
+
+with open(FileName, 'r') as f:
+    contents = f.read()
+    # Define the first line where your content will be replaced / added 
+    starting_text = '<!---START OF CONTENT --->'
+    # Define the second line where your content will be replaced / added 
+    ending_text = '<!---END OF CONTENT --->'
+    # Replace all matches with your template!
+    contents = replace_between_all_regex(contents, starting_text, ending_text, template)
+
+    
+
 
 with open(FileName, 'w') as f:
     f.write(contents)   

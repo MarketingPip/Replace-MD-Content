@@ -16,40 +16,27 @@ Template = """
 # Define the filename here you want to replace content in
 FileName = "README.md"
 
-def replace_between_all_regex(text, start, end, replacement):
-    """
-    Replace content between two strings
-    :param text: Text to be processed
-    :param start: Start string
-    :param end: End string
-    :param replacement: Replacement string
-    :return: Processed text
-    """
-    # Find start and end indexes
-    start_index = text.find(start)
-    end_index = text.find(end)
 
-    # If start or end not found, return original text
-    if start_index == -1 or end_index == -1:
-        return text
+def replace_between(file_name, start_string, end_string, new_string):
+    with open(file_name, 'r') as f:
+        content = f.read()
+    start_index = content.find(start_string)
+    end_index = content.find(end_string)
+    while start_index != -1 and end_index != -1:
+        content = content[:start_index] + new_string + content[end_index:]
+        start_index = content.find(start_string)
+        end_index = content.find(end_string)
+    with open(file_name, 'w') as f:
+        f.write(content)
 
-    # Replace text between start and end indexes
-    text = text[:start_index] + replacement + text[end_index + len(end):]
-
-    # Call function recursively to find and replace other occurrences
-    return replace_between_all_regex(text, start, end, replacement)
-
-with open(FileName, 'r') as f:
-    contents = f.read()
     # Define the first line where your content will be replaced / added 
-    starting_text = '<!---START OF CONTENT --->'
+starting_text = '<!---START OF CONTENT --->'
     # Define the second line where your content will be replaced / added 
-    ending_text = '<!---END OF CONTENT --->'
+ending_text = '<!---END OF CONTENT --->'
     # Replace all matches with your template!
-    contents = replace_between_all_regex(contents, starting_text, ending_text, Template)
-    with open(FileName, 'w') as f:
-        f.write(contents)   
-    
+        
+replace_between(FileName, starting_text, ending_text, new_string)
+ 
 
 
 

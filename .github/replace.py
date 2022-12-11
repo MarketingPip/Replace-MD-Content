@@ -25,11 +25,19 @@ def replace_between_all_regex(text, start, end, replacement):
     :param replacement: Replacement string
     :return: Processed text
     """
-    # Compile regex
-    regex = re.compile(start + "(.*?)" + end)
+    # Find start and end indexes
+    start_index = text.find(start)
+    end_index = text.find(end)
+
+    # If start or end not found, return original text
+    if start_index == -1 or end_index == -1:
+        return text
 
     # Replace text between start and end indexes
-    return regex.sub(replacement, text)    
+    text = text[:start_index] + replacement + text[end_index + len(end):]
+
+    # Call function recursively to find and replace other occurrences
+    return replace_between_all_regex(text, start, end, replacement)
 
 with open(FileName, 'r') as f:
     contents = f.read()

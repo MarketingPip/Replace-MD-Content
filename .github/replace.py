@@ -35,7 +35,7 @@ starting_text = '<!---START OF CONTENT --->'
 ending_text = '<!---END OF CONTENT --->'
     # Replace all matches with your template!
         
-replace_between(FileName, starting_text, ending_text, new_string)
+replace_between(FileName, starting_text, ending_text, Template)
  
 
 
